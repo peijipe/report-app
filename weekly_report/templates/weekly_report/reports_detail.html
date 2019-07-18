@@ -1,0 +1,130 @@
+{% extends 'weekly_report/base.html' %}
+
+{% block content %}
+
+<div>
+    {% if request.user == report.user %}
+    <!-- 編集ボタン -->
+    <form method="post" action="">{% csrf_token %}
+        <button class="btn btn-info" type="submit">編集</button>
+    </form>
+    {% endif %}
+</div>
+<br>
+
+<div>
+    <h2>プロジェクト概要</h2>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">項目</th>
+            <th scope="col">値</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">報告期間</th>
+            <td>{{ report.start_date }} ～ {{ report.end_date }}</td>
+            </tr>
+            <tr>
+            <th scope="row">報告者</th>
+            <td>{{ report.user }}</td>
+            </tr>
+            <tr>
+            <th scope="row">プロジェクト</th>
+            <td>{{ report.pj_name }}</td>
+            </tr>
+        </tbody>
+    </table>
+ 
+    <br>
+    <h2>週次報告</h2>
+    <table class="table">
+        <!-- <thead>
+            <tr>
+            <th scope="col">項目</th>
+            <th scope="col">値</th>
+            </tr>
+        </thead> -->
+        <tbody>
+            <tr>
+            <th scope="row">todo</th>
+            <td>{{ report.outline | linebreaks }}</td>
+            </tr>
+            <tr>
+            <th scope="row">良かった点</th>
+            <td>{{ report.good_point | linebreaks }}</td>
+            </tr>
+            <tr>
+            <th scope="row">悪かった点</th>
+            <td>{{ report.bad_point | linebreaks }}</td>
+            </tr>
+            <tr>
+            <th scope="row">課題</th>
+            <td>{{ report.problem_outline | linebreaks }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <br>
+    <h2>稼働時間</h2>
+    <h5>現場稼働時間</h5>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">項目</th>
+            <th scope="col">値</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">週間稼働時間</th>
+            <td>{{ report.weekly_project_working_hours }} h</td>
+            </tr>
+            <tr>
+            <th scope="row">累計稼働時間</th>
+            <td>{{ report.total_project_working_hours }} h</td>
+            </tr>
+            <tr>
+            <th scope="row">週間残業時間</th>
+            <td>{{ report.weekly_project_overtime_hours }} h</td>
+            </tr>
+            <tr>
+            <th scope="row">累計残業時間</th>
+            <td>{{ report.total_project_overtime_hours }} h</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>社内業務稼働時間</h5>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">項目</th>
+            <th scope="col">値</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">週間稼働時間</th>
+            <td>{{ report.weekly_internal_working_hours }} h</td>
+            </tr>
+            <tr>
+            <th scope="row">累計稼働時間</th>
+            <td>{{ report.total_internal_working_hours }} h</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% if request.user == report.user %}
+<!-- 削除ボタン -->
+<form method="post" action="{% url 'weekly_report:reports_delete' report.id %}">{% csrf_token %}
+    <button class="btn btn-danger" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+</form>
+{% endif %}
+
+</div>
+{% endblock %}
+
+

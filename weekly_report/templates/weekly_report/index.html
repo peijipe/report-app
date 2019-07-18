@@ -1,0 +1,12 @@
+{% extends 'weekly_report/base.html' %}
+
+{% block content %}
+
+<h2>トップページ</h2>
+{% for report in reports %}
+<a href="{% url 'weekly_report:users_detail' user.id %}">
+    @{{ report.user }}
+</a>
+{% endfor %}
+
+{% endblock %}

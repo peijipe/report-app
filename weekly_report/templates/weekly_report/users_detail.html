@@ -1,0 +1,32 @@
+{% extends 'weekly_report/base.html' %}
+
+{% block content %}
+
+<h2 class="user-name">@{{ user.username }}</h2>
+
+{% for report in reports %}
+
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">報告期間</th>
+        <th scope="col">作成日</th>
+        <th scope="col">最終更新日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th scope="row">
+            <a href="{% url 'weekly_report:reports_detail' report.id %}">
+                {{ report.start_date }} ～ {{ report.end_date }}
+            </a>
+        </th>
+        <td>{{ report.created_datetime }}</td>
+        <td>{{ report.updated_datetime }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
+
+{% endblock %}
