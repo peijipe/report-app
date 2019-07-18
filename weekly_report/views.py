@@ -37,3 +37,14 @@ def reports_delete(request, pk):
     report = get_object_or_404(Report, pk=pk)
     report.delete()
     return redirect('weekly_report:users_detail', request.user.id)
+
+def reports_edit(request, pk):
+    report = get_object_or_404(Report, pk=pk)
+    if request.method == "POST":
+        form = ReportForm(request.POST, instance=report)
+        if form.is_valid():
+            form.save()
+            return redirect('weekly_report:index')
+    else:
+        form = ReportForm(instance=report)
+    return render(request, 'weekly_report/reports_edit.html', {'form': form, 'report': report})

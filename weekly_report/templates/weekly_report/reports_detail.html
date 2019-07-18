@@ -5,9 +5,8 @@
 <div>
     {% if request.user == report.user %}
     <!-- 編集ボタン -->
-    <form method="post" action="">{% csrf_token %}
-        <button class="btn btn-info" type="submit">編集</button>
-    </form>
+    <a class="btn btn-info" href="{% url 'weekly_report:reports_edit' report.id %}" role="button">編集</a>
+
     {% endif %}
 </div>
 <br>
