@@ -3,10 +3,14 @@
 {% block content %}
 
 <div>
+    <a href="{% url 'weekly_report:users_detail' user.id %}">ユーザートップへ戻る</a>
+</div>
+
+<div>
     {% if request.user == report.user %}
     <!-- 編集ボタン -->
     <a class="btn btn-info" href="{% url 'weekly_report:reports_edit' report.id %}" role="button">編集</a>
-
+    <a class="btn btn-default" href="{% url 'weekly_report:reports_edit' report.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
     {% endif %}
 </div>
 <br>

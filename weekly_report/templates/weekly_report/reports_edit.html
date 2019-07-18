@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'weekly_report:index' %}">ホームに戻る</a>
+    <a href="{% url 'weekly_report:reports_detail' report.id %}">詳細画面へ戻る</a>
 </div>
 
 <form action="{% url 'weekly_report:reports_edit' report.id %}" method="POST">{% csrf_token %}
@@ -73,7 +73,7 @@
             <td>{{ form.free_text }}</td>
         </tr>
     </table>
-    <button type="submit" class="btn">保存</button>
+    <button class="btn btn-primary" type="submit">保存</button>
 </form>
 
 {% endblock %}
