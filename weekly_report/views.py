@@ -7,8 +7,8 @@ from django.views.decorators.http import require_POST
 from .forms import ReportForm
 
 def index(request):
-    reports = Report.objects.all().order_by('-start_date')
-    return render(request, 'weekly_report/index.html', {'reports': reports})
+    users = User.objects.all()
+    return render(request, 'weekly_report/index.html', {'users': users})
 
 def users_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
