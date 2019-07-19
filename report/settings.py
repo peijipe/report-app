@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+LOGIN_URL = 'weekly_report:login'
+LOGIN_REDIRECT_URL = 'weekly_report:index'
+LOGOUT_REDIRECT_URL = 'weekly_report:login'
