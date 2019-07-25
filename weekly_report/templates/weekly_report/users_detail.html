@@ -6,9 +6,9 @@
     <a href="{% url 'weekly_report:index' %}">トップへ戻る</a>
 </div>
 
-<h2 class="user-name">@{{ user.username }}</h2>
+<h2 class="user-name">{{ user.username }}のページ</h2>
 
-{% for report in reports %}
+
 
 <table class="table">
     <thead>
@@ -19,6 +19,7 @@
         </tr>
     </thead>
     <tbody>
+        {% for report in reports %}
         <tr>
         <th scope="row">
             <a href="{% url 'weekly_report:reports_detail' report.id %}">
@@ -28,9 +29,8 @@
         <td>{{ report.created_datetime }}</td>
         <td>{{ report.updated_datetime }}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
-
-{% endfor %}
 
 {% endblock %}
