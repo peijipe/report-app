@@ -1,0 +1,72 @@
+<h2>プロジェクト概要</h2>
+<table>
+    <tr>
+        <th>プロジェクト名</th>
+        <td>{{ form.pj_name }}</td>
+    </tr>
+    <tr>
+        <th>開始日</th>
+        <td>{{ form.start_date }}</td>
+        <th>終了日</th>
+        <td>{{ form.end_date }}</td>
+    </tr>
+</table>
+<hr>
+<h2>週次報告</h2>
+<table>
+    <tr>
+        <th>todo</th>
+        <td>{{ form.outline }}</td>
+    </tr>
+    <tr>
+        <th>良かった点</th>
+        <td>{{ form.good_point }}</td>
+    </tr>
+    <tr>
+        <th>悪かった点</th>
+        <td>{{ form.bad_point }}</td>
+    </tr>
+    <tr>
+        <th>課題</th>
+        <td>{{ form.problem_outline }}</td>
+    </tr>
+</table>
+<hr>
+<h2>稼働時間</h2>
+<h5>現場稼働時間</h5>
+<table>
+    <tr>
+        <th>週間稼働時間</th>
+        <td>{{ form.weekly_project_working_hours }}</td>
+        <th>累計稼働時間</th>
+        <td>{{ form.total_project_working_hours }}</td>
+    </tr>
+    <tr>
+        <th>週間残業時間</th>
+        <td>{{ form.weekly_project_overtime_hours }}</td>
+        <th>累計残業時間</th>
+        <td>{{ form.total_project_overtime_hours }}</td>
+    </tr>
+</table>
+<h5>社内稼働時間</h5>
+<table>
+    <tr>
+        <th>週間稼働時間</th>
+        <td>{{ form.weekly_internal_working_hours }}</td>
+        <th>累計稼働時間</th>
+        <td>{{ form.total_internal_working_hours }}</td>
+    </tr>
+</table>
+<hr>
+<h2>その他</h2>
+<table>
+    <tr>
+        <th>指摘事項</th>
+        <td>{{ form.pointed_matter }}</td>
+    </tr>
+    <tr>
+        <th>自由欄</th>
+        <td>{{ form.free_text }}</td>
+    </tr>
+</table>
+<button class="btn btn-primary" type="submit">保存</button>
