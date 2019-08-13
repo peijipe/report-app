@@ -2,15 +2,18 @@ from django.shortcuts import render, redirect
 from .models import Report
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 # from .forms import ReportForm　# ModelFormのケース
 from .forms import RepoForm
 
+@login_required
 def index(request):
     users = User.objects.all()
     return render(request, 'weekly_report/index.html', {'users': users})
 
+@login_required
 def users_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     reports = user.report_set.all().order_by('-start_date')
@@ -30,6 +33,7 @@ def users_detail(request, pk):
 #         form = ReportForm()
 #     return render(request, 'weekly_report/reports_new.html', {'form': form})
 
+@login_required
 def reports_new(request):
     form = RepoForm(request.POST or None)
 
@@ -76,11 +80,12 @@ def reports_new(request):
 
     return render(request, 'weekly_report/reports_new.html', {'form': form})
 
-
+@login_required
 def reports_detail(request, pk):
     report = get_object_or_404(Report, pk=pk)
     return render(request, 'weekly_report/reports_detail.html', {'report': report})
 
+@login_required
 @require_POST
 def reports_delete(request, pk):
     report = get_object_or_404(Report, pk=pk)
@@ -99,6 +104,7 @@ def reports_delete(request, pk):
 #         form = ReportForm(instance=report)
 #     return render(request, 'weekly_report/reports_edit.html', {'form': form, 'report': report})
 
+@login_required
 def reports_edit(request, pk):
     report = get_object_or_404(Report, pk=pk)
 
